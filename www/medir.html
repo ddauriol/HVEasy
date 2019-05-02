@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="css/material-kit.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar fixed-top navbar-light bg-rose">
+            <div class="col-3">
+                <div class="container">
+                    <a href="index.html"><img src="img/logo.png" width="50" height="50"></a>
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="container">
+                    <a class="navbar-brand" href="#">Hardness Vickers Easily</a>
+                </div>
+            </div>    
+            
+        </nav>
+        <!-- Inicio do do aplicativo -->
+        <div class="container">
+            <br>
+            <br>
+            <br>
+            <br>
+            <!-- Formulario de Medicao -->
+            <div class="container" id="frmDivMedicao">
+                <form class="was-validated">
+                    <div class="form-group">
+                        <label for="frmTempo">Tempo de Teste</label>
+                        <select class="custom-select" name="frmTempo" id="frmTempo" required>
+                            <option value="">Tempo de Teste</option>
+                            <option value="5">5s</option>
+                            <option value="10">10s</option>
+                            <option value="15">15s</option>
+                            <option value="20">20s</option>
+                            <option value="25">25s</option>
+                            <option value="30">30s</option>
+                            <option value="35">35s</option>
+                            <option value="40">40s</option>
+                        </select>
+                        <div class="invalid-feedback">Selecione o tempo de teste</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="frmCarga">Carga do ensaio</label>
+                        <select class="custom-select" name="frmCarga" id="frmCarga" required>
+                            <option value="">Carga do teste</option>
+                            <option value="10">10kgf</option>
+                            <option value="25">25kgf</option>
+                            <option value="50">50kgf</option>
+                            <option value="100">100kgf</option>
+                            <option value="200">200kgf</option>
+                            <option value="300">300kgf</option>
+                            <option value="500">500kgf</option>
+                            <option value="1000">1000kgf</option>
+                        </select>
+                        <div class="invalid-feedback">Selecione a carga utilizada</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="frmUnidade">Unidade de medida</label>
+                        <select class="custom-select" name="frmUnidade" id="frmUnidade" required>
+                            <option value="1000">Microns</option>
+                            <option value="1">Milímetro</option>
+                        </select>
+                        <div class="invalid-feedback">Selecione a unidade de medida utilizada</div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <label for="frmDiagonal_1">D1</label>
+                            <input style="text-align:center;" type="number" class="form-control" name="frmDiagonal_1"
+                                id="frmDiagonal_1" placeholder="Diag. 1">
+                        </div>
+                        <div class="col text-center">
+                            <label for="frmDiagonal_2">D2</label>
+                            <input style="text-align:center;" type="number" class="form-control" name="frmDiagonal_2"
+                                id="frmDiagonal_2" placeholder="Diag. 2">
+                        </div>
+                        <div class="col text-center">
+                            <label for="frmDiagonal">Média</label>
+                            <input style="text-align:center;" type="number" class="form-control" name="frmDiagonal"
+                                id="frmDiagonal" placeholder="0.0" disabled>
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <button type="button" class="btn btn-rose btn-lg btn-block" id="btnCalcDiagonal"
+                    onclick="CalcularDureza()">Medir</button>
+            </div>
+
+            <!-- Inicio do Formulario de resposta da medicao -->
+            <div class="container" id="divResultados" style="visibility: hidden;">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-12">
+                            <div class="card card-nav-tabs">
+                                <div class="card-body">
+                                    <h4 class="card-title">Resultado Atual</h4>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span class="input-group-text" id="frmValorHV">HV</span>
+                                            <!-- <input style="text-align:center;" type="text" class="form-control" disabled aria-label="Default" id="frmValorHV">                                             -->
+                                        </div>
+                                        <div class="col-2">
+                                            <span class="input-group-text">HV</span>                                            
+                                        </div>
+                                        <div class="col-2">
+                                            <span class="input-group-text" id="frmValorCarga">HV</span>
+                                            <!-- <input style="text-align:center;" type="text" class="form-control" disabled aria-label="Default" id="frmValorCarga">                                             -->
+                                        </div>
+                                        <div class="col-2">
+                                            <span class="input-group-text">/</span>
+                                        </div>
+                                        <div class="col-2">
+                                            <span class="input-group-text" id="frmValorTempo">HV</span>
+                                            <!-- <input style="text-align:center;" type="text" class="form-control" disabled aria-label="Default" id="frmValorTempo"> -->
+                                        </div>
+                                        <div class="col-2">
+                                            <button class="btn btn-warning btn-fab btn-round" onclick="AcumularResultado()"><i class="material-icons">add</i></button>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Div contendo as tabelas e graficos -->
+                <div class="container" id="containerResultados" style="visibility: hidden;">
+                    <div class="card card-nav-tabs">
+                        <div class="card-body">
+                            <div>
+                                <table id="frmResultados" name="frmResultados" class="table table-sm">
+                                    <thead class="alert alert-rose">
+                                        <tr style="text-align: center">
+                                            <th scope="col">#</th>
+                                            <th scope="col">Dureza</th>
+                                            <th scope="col">Carga</th>
+                                            <th scope="col">Tempo</th>
+                                            <th scope="col">-</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="TabResultados"></tbody>
+                                </table>
+                                <table id="frmCompilados" name="frmCompilados" class="table table-sm">
+                                    <thead class="alert alert-rose">
+                                        <tr style="text-align: center">
+                                            <th scope="col">Dureza</th>
+                                            <th scope="col">Máximo</th>
+                                            <th scope="col">Mínimo</th>
+                                            <th scope="col">Desvio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id="frmStats" style="text-align: center" ></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="frmGrafico">
+                            </div>
+                            <div id="divSalvarMedicao" style="visibility: hidden;">
+                                <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal"
+                                    data-target="#modalSaveEnsaioForm">Salvar<i class="material-icons">save_alt</i></button>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+
+
+        <!-- The Modal -->
+         <div class="modal fade" id="ModalCarga">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title">Selecione a carga do teste</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="modal fade" id="ModalDiagonal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title">Diagonais sem valores válidos</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--   Core JS Files   -->
+        <script src="js/core/jquery.min.js" type="text/javascript"></script>
+        <script src="js/core/popper.min.js" type="text/javascript"></script>
+        <script src="js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+        <script src="js/plugins/moment.min.js"></script>
+
+        <!-- Carregando Thema Material -->
+        <script type="text/javascript" src="js/material-kit.js"></script>
+
+        <!-- Carregando CORDOVA -->
+        <!-- <script type="text/javascript" src="cordova.js"></script> -->
+
+        <!-- Carregar Math.JS -->
+        <script type="text/javascript" src="js/math.min.js"></script>
+
+        <!-- Carregar Chart.JS -->
+        <script type="text/javascript" src="js/Chart.min.js"></script>
+
+        <!-- Carregando script de Medicao -->
+        <script type="text/javascript" src="js/medicao.js"></script>
+        
+    </body>
+</html>
