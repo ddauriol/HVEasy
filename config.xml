@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.ddauriol.hveasy" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Vickers Hardness Test</name>
+    <name>Vickers Hardness</name>
     <description>
         The Vickers hardness test aplication.
     </description>
     <author email="ddauriol@yahoo.com.br" href="http://ddauriol.com">
-        ddauriol Softwares
+        ddauriol
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
@@ -16,6 +16,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <icon src="res/icon.png" />
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>

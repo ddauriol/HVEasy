@@ -1,3 +1,16 @@
+
+var durezaHV = {
+                nome: "",
+                Carga: "",
+                TempoTeste: "",
+                HV: "",
+                valoreMedidos:{
+                    id: "1",
+                    durezaHV: "a"
+                }
+            };
+
+
 var Resultados = [];
 var DurezaAcumulado = [];
 var Indexacao = 0;
@@ -32,8 +45,11 @@ function CalcularDureza() {
             TempoTeste = parseFloat(document.getElementById("frmTempo").value);
 
             document.getElementById("frmValorHV").innerHTML = HV.toFixed(0);
-            document.getElementById("frmValorCarga").innerHTML = Carga;
+            document.getElementById("frmValorCarga").innerHTML = Carga/1000;
             document.getElementById("frmValorTempo").innerHTML = TempoTeste;
+            document.getElementById("HVtoMPA").innerHTML = (HV.toFixed(0) * 9.807).toFixed(2);
+            document.getElementById("HVtoGPA").innerHTML = (HV.toFixed(0) * 0.009807).toFixed(2);
+
 
             document.getElementById("divResultados").style.visibility = "visible";
             // document.getElementById("containerResultados").style.visibility = "visible";

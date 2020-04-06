@@ -6,21 +6,28 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <link rel="stylesheet" type="text/css" href="css/material-kit.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/material-icons.css">
+        <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     </head>
     <body>
         <nav class="navbar fixed-top navbar-light bg-rose">
+            <div class="row">
             <div class="col-3">
                 <div class="container">
-                    <a href="index.html"><img src="img/logo.png" width="50" height="50"></a>
+                    <a href="index.html"><img src="img/logo.png" width="45" height="45"></a>
                 </div>
             </div>
-            <div class="col-9">
+            <div class="col-6">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Hardness Vickers Easily</a>
+                    <a class="navbar-brand justify-content-center align-items-center" href="#" style="font-size: 24px">Dureza Vickers</a>
                 </div>
-            </div>    
-            
+            </div>
+            <div class="col-1">
+                <div class="container">
+                    <a class="navbar-brand" href="#" data-toggle="tooltip" data-placement="bottom" title="Ver. 1.0 - ddauriol@yahoo.com.br"><i style="font-size: 36px" class="material-icons">help</i></a>
+                </div>
+            </div>   
+            </div>
         </nav>
         <!-- Inicio do do aplicativo -->
         <div class="container">
@@ -58,6 +65,13 @@
                             <option value="300">300kgf</option>
                             <option value="500">500kgf</option>
                             <option value="1000">1000kgf</option>
+                            <option value="2000">2000kgf</option>
+                            <option value="3000">3000kgf</option>
+                            <option value="5000">5000kgf</option>
+                            <option value="10000">10000kgf</option>
+                            <option value="20000">20000kgf</option>
+                            <option value="30000">30000kgf</option>
+                            <option value="50000">50000kgf</option>
                         </select>
                         <div class="invalid-feedback">Selecione a carga utilizada</div>
                     </div>
@@ -98,28 +112,19 @@
                         <div class="col-12">
                             <div class="card card-nav-tabs">
                                 <div class="card-body">
-                                    <h4 class="card-title">Resultado Atual</h4>
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <span class="input-group-text" id="frmValorHV">HV</span>
-                                            <!-- <input style="text-align:center;" type="text" class="form-control" disabled aria-label="Default" id="frmValorHV">                                             -->
+                                    <div class="row justify-content-center align-items-center">
+                                        <h4><b id="frmValorHV"></b>
+                                        <b>&nbspHV&nbsp</b>                                            
+                                        <b id="frmValorCarga"></b>
+                                        <b>&nbsp/&nbsp</b>
+                                        <b id="frmValorTempo"></b>    </h4>                
+                                    </div>
+                                    <div class="row justify-content-center align-items-center">
+                                        <div class="col-6">
+                                            <h5><b>MPA:&nbsp</b> <i id="HVtoMPA"></i></h5>
                                         </div>
-                                        <div class="col-2">
-                                            <span class="input-group-text">HV</span>                                            
-                                        </div>
-                                        <div class="col-2">
-                                            <span class="input-group-text" id="frmValorCarga">HV</span>
-                                            <!-- <input style="text-align:center;" type="text" class="form-control" disabled aria-label="Default" id="frmValorCarga">                                             -->
-                                        </div>
-                                        <div class="col-2">
-                                            <span class="input-group-text">/</span>
-                                        </div>
-                                        <div class="col-2">
-                                            <span class="input-group-text" id="frmValorTempo">HV</span>
-                                            <!-- <input style="text-align:center;" type="text" class="form-control" disabled aria-label="Default" id="frmValorTempo"> -->
-                                        </div>
-                                        <div class="col-2">
-                                            <button class="btn btn-warning btn-fab btn-round" onclick="AcumularResultado()"><i class="material-icons">add</i></button>                                            
+                                        <div class="col-6">
+                                            <h5><b>GPA:&nbsp</b> <i id="HVtoGPA"></i></h5>
                                         </div>
                                     </div>
                                 </div>
@@ -127,47 +132,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Div contendo as tabelas e graficos -->
-                <div class="container" id="containerResultados" style="visibility: hidden;">
-                    <div class="card card-nav-tabs">
-                        <div class="card-body">
-                            <div>
-                                <table id="frmResultados" name="frmResultados" class="table table-sm">
-                                    <thead class="alert alert-rose">
-                                        <tr style="text-align: center">
-                                            <th scope="col">#</th>
-                                            <th scope="col">Dureza</th>
-                                            <th scope="col">Carga</th>
-                                            <th scope="col">Tempo</th>
-                                            <th scope="col">-</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="TabResultados"></tbody>
-                                </table>
-                                <table id="frmCompilados" name="frmCompilados" class="table table-sm">
-                                    <thead class="alert alert-rose">
-                                        <tr style="text-align: center">
-                                            <th scope="col">Dureza</th>
-                                            <th scope="col">Máximo</th>
-                                            <th scope="col">Mínimo</th>
-                                            <th scope="col">Desvio</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr id="frmStats" style="text-align: center" ></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div id="frmGrafico">
-                            </div>
-                            <div id="divSalvarMedicao" style="visibility: hidden;">
-                                <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal"
-                                    data-target="#modalSaveEnsaioForm">Salvar<i class="material-icons">save_alt</i></button>
-                            </div>
-                        </div>
-                    </div>                    
-                </div>
             </div>
+        </div>
+        <br>
+        <div class="fixed-bottom" style="background-color: #e91e63; ">
+            <img src="img/ddauriol_logo.svg" width="20%" height="20%" style="margin-left: auto; margin-right: auto;display: block;">
         </div>
 
 
