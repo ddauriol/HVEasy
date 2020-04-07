@@ -7,6 +7,7 @@ var durezaHV = {
 };
 
 var Indexacao = 1;
+var Resultados = [];
 
 // Elementos do Displays
 const frmCarga = document.getElementById("frmCarga")
@@ -28,6 +29,8 @@ const thMediaMpaGpa = document.getElementById("thMediaMpaGpa")
 const thStd = document.getElementById("thStd")
 const divTabResultados = document.getElementById("divTabResultados")
 const divFrmTempo = document.getElementById("divFrmTempo")
+const btnAddValue = document.getElementById("btnAddValue")
+const btnCalcDiagonal = document.getElementById("btnCalcDiagonal")
 
 async function CalcularDureza() {
 
@@ -38,7 +41,8 @@ async function CalcularDureza() {
             $('#ModalCarga').modal('show');
         } else {
             if (frmDiagonal_1.value == "" || frmDiagonal_2
-                .value == "") {
+                .value == "" || frmDiagonal_1.value == 0 || frmDiagonal_2
+                .value == 0) {
                 $('#ModalDiagonal').modal('show');
             } else {
                 var D1 = frmDiagonal_1.value
@@ -57,17 +61,18 @@ async function CalcularDureza() {
                 HVtoGPA.innerHTML = GPA
 
                 divResultados.style.visibility = "visible";
+                btnAddValue.disabled = ""
             };
         };
     };
 }
 
 function calcHV(D1, D2, Carga, Unidade) {
-    if (D1 < 0){
-        D1 = D1*-1
+    if (D1 < 0) {
+        D1 = D1 * -1
     }
-    if (D2 < 0){
-        D2 = D2*-1
+    if (D2 < 0) {
+        D2 = D2 * -1
     }
     var Diagonal = (parseFloat(D1) + parseFloat(D2)) / 2;
     var HV = 0.1891 * (9.80665 * Carga) / (Diagonal * Diagonal);
@@ -75,26 +80,30 @@ function calcHV(D1, D2, Carga, Unidade) {
     return [HV, Diagonal]
 }
 
-function convertMPA(HV){
+function convertMPA(HV) {
     var MPA = (HV.toFixed(0) * 9.807).toFixed(2);
     var GPA = (HV.toFixed(0) * 0.009807).toFixed(2);
     return [MPA, GPA]
 }
 
-function AddValue(){
+function AddValue() {
     var date = new Date()
     var dateFull = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes()
-    if (durezaHV['label'] == ""){
+    if (durezaHV['label'] == "") {
         durezaHV['label'] = dateFull
         durezaHV['carga'] = parseFloat(frmValorCarga.textContent)
         durezaHV['tempoTeste'] = parseInt(frmValorTempo.textContent)
     }
-    durezaHV['valoreMedidos'][Indexacao - 1] = {id: Indexacao, durezaHV: parseInt(frmValorHV.textContent)}
+    durezaHV['valoreMedidos'][Indexacao - 1] = {
+        id: Indexacao,
+        durezaHV: parseInt(frmValorHV.textContent)
+    }
     Indexacao = Indexacao + 1
     updateTableResultados()
+    btnAddValue.disabled = "disabled"
 }
 
-async function updateTableResultados(){
+async function updateTableResultados() {
     tableResultadosCargaTempo.innerHTML = "HV " + durezaHV['carga'] + " / " + durezaHV['tempoTeste']
     var txtHTML = ''
     var mediaHV = 0
@@ -102,23 +111,23 @@ async function updateTableResultados(){
     Object.entries(durezaHV['valoreMedidos']).forEach(([key, medicao]) => {
         valores.push(medicao['durezaHV'])
         mediaHV = mediaHV + medicao['durezaHV']
-        var [MPA, GPA] = convertMPA(medicao['durezaHV']) 
+        var [MPA, GPA] = convertMPA(medicao['durezaHV'])
         txtHTML += `<tr id="res_${medicao['id']}">
-        <th scope="row">${medicao['id']}</th>
-        <td>${medicao['durezaHV']}</td>
-        <td>${MPA}</td>
-        <td>${GPA}</td>
-        <td>
-            <button id="bnt_res_${medicao['id']}" class="btn btn-danger btn-fab btn-fab-mini btn-round"
-            onclick="removeMedicao(${medicao['id']})">
-                <i class="material-icons">clear</i>
-            </button>
-        </td>
-    </tr>`
+    <th scope="row">${medicao['id']}</th>
+    <td>${medicao['durezaHV']}</td>
+    <td>${MPA}</td>
+    <td>${GPA}</td>
+    <td>
+        <button id="bnt_res_${medicao['id']}" class="btn btn-danger btn-fab btn-fab-mini btn-round"
+        onclick="removeMedicao(${medicao['id']})">
+            <i class="material-icons">clear</i>
+        </button>
+    </td>
+</tr>`
     });
     tableResultados.innerHTML = txtHTML
     mediaHV = mediaHV / durezaHV['valoreMedidos'].length
-    var [MPA, GPA] = convertMPA(mediaHV) 
+    var [MPA, GPA] = convertMPA(mediaHV)
     thMedia.innerHTML = parseInt(mediaHV) + "HV " + durezaHV['carga'] + " / " + durezaHV['tempoTeste']
     thMediaMpaGpa.innerHTML = "MPA: " + MPA + " GPA: " + GPA
     thStd.innerHTML = "Desvio Padrão: " + math.std(valores).toFixed(3)
@@ -127,23 +136,23 @@ async function updateTableResultados(){
     divTabResultados.style.visibility = "visible";
 }
 
-function removeMedicao(i){
+function removeMedicao(i) {
     Object.entries(durezaHV['valoreMedidos']).forEach(([key, medicao]) => {
-        if (medicao['id'] == i){
+        if (medicao['id'] == i) {
             durezaHV['valoreMedidos'].splice(key, 1)
         }
     });
     updateTableResultados()
 }
 
-function resetFrm(){
+function resetFrm() {
     durezaHV = {
         label: "",
         carga: 0,
         tempoTeste: 0,
         valoreMedidos: []
     };
-    
+
     Indexacao = 1;
     frmTempo.disabled = ""
     frmCarga.disabled = ""
@@ -151,6 +160,11 @@ function resetFrm(){
     divResultados.style.visibility = "hidden";
     frmDiagonal_1.value = 0
     frmDiagonal_2.value = 0
-    frmDiagonal_1.focus();
+    btnCalcDiagonal.focus();
     window.scrollTo(0, 0)
+}
+
+function salvarLocalStorage(){
+    Resultados.push(durezaHV)
+    localStorage.setItem('HVEasy', Resultados)
 }
