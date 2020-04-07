@@ -39,7 +39,7 @@
         <!-- Formulario de Medicao -->
         <div class="mt-10" id="frmDivMedicao">
             <form class="was-validated">
-                <div class="form-group">
+                <div id="divFrmTempo" class="form-group">
                     <label for="frmTempo">Tempo de Teste</label>
                     <select class="custom-select" name="frmTempo" id="frmTempo" required>
                         <option value="">Tempo de Teste</option>
@@ -107,7 +107,7 @@
         </div>
 
         <!-- Inicio do Formulario de resposta da medicao -->
-        <div class="container mt-10" id="divResultados" style="visibility: show;">
+        <div class="container mt-10" id="divResultados" style="visibility: hidden;">
             <div class="row justify-content-center align-items-center">
                 <div class="col-12">
                     <div class="card card-nav-tabs">
@@ -119,18 +119,19 @@
                                     <b>&nbsp;/&nbsp;</b>
                                     <b id="frmValorTempo"></b> </h4>
                             </div>
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-6">
+                            <div class="row text-center">
+                                <div class="col text-center">
                                     <h5><b>MPA:&nbsp</b> <i id="HVtoMPA"></i></h5>
                                 </div>
-                                <div class="col-6">
+                                <div class="col text-center">
                                     <h5><b>GPA:&nbsp</b> <i id="HVtoGPA"></i></h5>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col text-center">
-                                    <button class="btn btn-success btn-round">
-                                        <i class="material-icons">playlist_add</i> Adicionar
+                                    <button id="btnAddValue" class="btn btn-success btn-round"
+                                    onclick="AddValue()">
+                                        <i class="material-icons">playlist_add</i>Adicionar
                                     </button>
                                 </div>
                             </div>
@@ -150,34 +151,25 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">HV 100 / 25</th>
+                                        <th id="tableResultadosCargaTempo" scope="col">HV</th>
                                         <th scope="col">MPA</th>
                                         <th scope="col">GPA</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody id="tableResultados">
-                                    <tr id="res_1">
-                                        <th scope="row">1</th>
-                                        <td>2500</td>
-                                        <td>250</td>
-                                        <td>20</td>
-                                        <td>
-                                            <button id="bnt_res_1" class="btn btn-danger btn-fab btn-fab-mini btn-round">
-                                                <i class="material-icons">clear</i>
-                                            </button>
-                                        </td>
-                                    </tr>
                                 </tbody>
                                 <thead>
                                     <tr class="table-warning">
                                         <th id="thMedia" colspan="5">
-                                            2500HV 100 / 25
                                         </th>
                                     </tr>
                                     <tr>
                                         <th id="thMediaMpaGpa" colspan="5">
-                                            250MPA | 25GPA
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th id="thStd" colspan="5">
                                         </th>
                                     </tr>
                                 </thead>
@@ -189,6 +181,13 @@
                                     </button>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col text-center">
+                                    <button class="btn btn-danger btn-round" onclick="resetFrm()">
+                                        <i class="material-icons">clear_all</i>&nbsp; Limpar &nbsp; Tudo
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -197,12 +196,27 @@
     </div>
 
     <!-- Rodapé -->
-    <div class="fixed-bottom" style="background-color: #e91e63; ">
-        <img src="img/ddauriol_logo.svg" width="15%" height="15%"
-            style="margin-left: auto; margin-right: auto;display: block;">
+    <div class="fixed-bottom" style="background-color: #e91e63; height: 35px ; ">
+        <img src="img/ddauriol_logo.svg" height="99%"
+            style="margin-left: auto; margin-right: auto; display: block;">
     </div>
 
     <!-- The Modal -->
+    <div class="modal fade" id="ModalTempo">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title">Selecione o tempo em que a carga foi aplicada</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="ModalCarga">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -244,9 +258,6 @@
 
     <!-- Carregar Math.JS -->
     <script type="text/javascript" src="js/math.min.js"></script>
-
-    <!-- Carregar Chart.JS -->
-    <script type="text/javascript" src="js/Chart.min.js"></script>
 
     <!-- Carregando script de Medicao -->
     <script type="text/javascript" src="js/medicao.js"></script>
