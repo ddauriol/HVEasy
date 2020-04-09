@@ -163,8 +163,3 @@ function resetFrm() {
     btnCalcDiagonal.focus();
     window.scrollTo(0, 0)
 }
-
-function salvarLocalStorage(){
-    Resultados.push(durezaHV)
-    localStorage.setItem('HVEasy', Resultados)
-}

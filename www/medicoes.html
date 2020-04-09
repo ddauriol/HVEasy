@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <link rel="stylesheet" type="text/css" href="css/material-kit.css">
+    <link rel="stylesheet" type="text/css" href="css/material-icons.css">
+    <link rel="stylesheet" href="css/medir.css">
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-light bg-rose">
+        <div class="row">
+            <div class="col-1">
+                <div class="container">
+                    <a href="index.html"><img src="img/logo.png" width="40" height="45"></a>
+                </div>
+            </div>
+            <div class="col-6 ml-2">
+                <div class="container">
+                    <a class="navbar-brand justify-content-center align-items-center" href="#"
+                        style="font-size: 24px">Dureza Vickers</a>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="container text-center">
+                    <a class="navbar-brand" href="medir.html" data-toggle="tooltip" data-placement="bottom"
+                        title="Realizar Medição"><i style="font-size: 36px"
+                            class="material-icons">compare_arrows</i></a>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="container text-center">
+                    <a class="navbar-brand" href="#" data-toggle="tooltip" data-placement="bottom"
+                        title="Ver. 1.0 - ddauriol@yahoo.com.br"><i style="font-size: 36px"
+                            class="material-icons">help</i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Inicio do do aplicativo -->
+    <div id="divResultadosSalvos" class="container">
+
+        <!-- Inicio  -->
+        <div class="container mt-10" id="divResultado_" style="visibility: show;">
+            <div id="cardsResultados" class="row justify-content-center align-items-center">
+                
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <div class="fixed-bottom" style="background-color: #e91e63; height: 35px ; ">
+            <img src="img/ddauriol_logo.svg" height="99%"
+                style="margin-left: auto; margin-right: auto; display: block;">
+        </div>
+
+        <!--   Core JS Files   -->
+        <script src="js/core/jquery.min.js" type="text/javascript"></script>
+        <script src="js/core/popper.min.js" type="text/javascript"></script>
+        <script src="js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+        <script src="js/plugins/moment.min.js"></script>
+
+        <!-- Carregando Thema Material -->
+        <script type="text/javascript" src="js/material-kit.js"></script>
+
+        <!-- Carregar Math.JS -->
+        <script type="text/javascript" src="js/math.min.js"></script>
+
+        <!-- Carregando script de Medicao -->
+        <script type="text/javascript" src="js/medicao.js"></script>
+
+        <!-- Carregando script de Armazenamento -->
+        <script type="text/javascript" src="js/storageManager.js"></script>
+
+        <script>
+            getLocalStorage()
+        </script>
+
+</body>
+
+</html>
