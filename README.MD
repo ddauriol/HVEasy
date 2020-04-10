@@ -34,7 +34,7 @@ _Forças Totais_
 - [ ] Cálculo reverso
   
 ## Versão BETA
-_[Versão Beta Android]()_
+_[Versão Beta Android](https://github.com/ddauriol/HVEasy/blob/master/publish/VickersHardness-1.0.5.apk)_
   
 ![Beta](./docs/HVEasy_Demo_01.gif)
   
