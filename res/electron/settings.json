@@ -1,0 +1,19 @@
+{
+    "browserWindow": {
+        "width": 414,
+        "height": 736,
+        "darkTheme": true,
+        "resizable": false,
+        "webPreferences": {
+            "devTools": true,
+            "nodeIntegration": false
+        }
+    },
+    "setApplicationMenu": {
+            "label": "Arquivo",
+            "submenu": [
+              { "role": "Sair" }
+            ]
+    }
+
+}

@@ -65,8 +65,16 @@
 
         <script>
             setTimeout(function(){
-                window.open("medir.html","_self")
-            }, 3000);
+                var a = document.createElement("a")
+                a.href = "medir.html"
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(function() {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);  
+                }, 0); 
+                // window.open("medir.html")
+            }, 2000);
         </script>
 
     </body>
