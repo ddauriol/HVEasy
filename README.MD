@@ -29,10 +29,15 @@ _Forças Totais_
 ## Lista de funcionalidades
 - [x] Cálculos baseados nas diagonais
 - [x] Conversão para GPA e MPA
-- [ ] Cáculo de médias acumuladas
-- [ ] Exportar dados em CSV
+- [x] Cáculo de médias acumuladas e Desvio Padrão
+- [x] Exportar dados em CSV
 - [ ] Cálculo reverso
   
 ## Versão BETA
+_[Versão Beta Android]()_
+  
 ![Beta](./docs/HVEasy_Demo_01.gif)
-![Beta - Erro](./docs/HVEasy_Demo_02.gif)
+  
+![Beta](./docs/HVEasy_Demo_03.gif)
+  
+![Beta - Error Manager](./docs/HVEasy_Demo_02.gif)
