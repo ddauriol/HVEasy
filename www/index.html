@@ -1,81 +1,58 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-        <link rel="stylesheet" type="text/css" href="css/loader.css">
-    </head>
-    <body style="background-color: #e91e63; ">
-        <div class="container" style="background-color: #e91e63; ">
-            <img src="img/logo.svg" width="120" height="120" style="margin-top: 40%; margin-left: auto; margin-right: auto;display: block;">
-        </div>
-        <div class="app">
-            <div class="container text-center">
-                <div id="DivLoader" class="">
-                    <div class="sk-cube-grid">
-                        <div class="sk-cube sk-cube1"></div>
-                        <div class="sk-cube sk-cube2"></div>
-                        <div class="sk-cube sk-cube3"></div>
-                        <div class="sk-cube sk-cube4"></div>
-                        <div class="sk-cube sk-cube5"></div>
-                        <div class="sk-cube sk-cube6"></div>
-                        <div class="sk-cube sk-cube7"></div>
-                        <div class="sk-cube sk-cube8"></div>
-                        <div class="sk-cube sk-cube9"></div>
-                    </div>
+
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <link rel="stylesheet" type="text/css" href="css/loader.css">
+</head>
+
+<body style="background-color: #e91e63; ">
+    <div class="container" style="background-color: #e91e63; ">
+        <img src="img/logo.svg" width="120" height="120"
+            style="margin-top: 40%; margin-left: auto; margin-right: auto;display: block;">
+    </div>
+    <div class="app">
+        <div class="container text-center">
+            <div id="DivLoader" class="">
+                <div class="sk-cube-grid">
+                    <div class="sk-cube sk-cube1"></div>
+                    <div class="sk-cube sk-cube2"></div>
+                    <div class="sk-cube sk-cube3"></div>
+                    <div class="sk-cube sk-cube4"></div>
+                    <div class="sk-cube sk-cube5"></div>
+                    <div class="sk-cube sk-cube6"></div>
+                    <div class="sk-cube sk-cube7"></div>
+                    <div class="sk-cube sk-cube8"></div>
+                    <div class="sk-cube sk-cube9"></div>
                 </div>
             </div>
         </div>
-        <div class="fixed-bottom">
-            <img src="img/ddauriol_logo.svg" width="60%" height="60%" style="margin-left: auto; margin-right: auto;display: block;">
-        </div>
+    </div>
+    <div class="fixed-bottom">
+        <img src="img/ddauriol_logo.svg" width="60%" height="60%"
+            style="margin-left: auto; margin-right: auto;display: block;">
+    </div>
 
-        <!-- <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script> -->
-        <!-- <script type="text/javascript" src="cordova.js"></script> -->
-        <script type="text/javascript" src="js/index.js"></script>
+    <!-- <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script> -->
+    <!-- <script type="text/javascript" src="cordova.js"></script> -->
+    <script type="text/javascript" src="js/index.js"></script>
 
-        <script>
-            setTimeout(function(){
-                var a = document.createElement("a")
-                a.href = "medir.html"
-                document.body.appendChild(a);
-                a.click();
-                setTimeout(function() {
-                    document.body.removeChild(a);
-                    window.URL.revokeObjectURL(url);  
-                }, 0); 
-                // window.open("medir.html")
-            }, 2000);
-        </script>
+    <script>
+        setTimeout(function () {
+            var a = document.createElement("a")
+            a.href = "medir.html"
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(function () {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            }, 0);
+            // window.open("medir.html")
+        }, 2000);
+    </script>
 
-    </body>
+</body>
+
 </html>
